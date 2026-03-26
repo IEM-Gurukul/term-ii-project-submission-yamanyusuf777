@@ -22,12 +22,28 @@ public class Main {
 
             switch (choiceStr) {
                 case "1":
-                    // Handled in Task 7
-                    System.out.println("Add Expense option selected. (Implementation coming in Task 7)");
+                    System.out.print("Enter amount: ");
+                    double expAmount = scanner.nextDouble();
+                    scanner.nextLine(); // Consume newline left-over
+                    System.out.print("Enter category: ");
+                    String expCategory = scanner.nextLine();
+                    System.out.print("Enter date: ");
+                    String expDate = scanner.nextLine();
+                    
+                    manager.addTransaction(new Expense(expAmount, expCategory, expDate));
+                    System.out.println("✅ Expense added successfully!");
                     break;
                 case "2":
-                    // Handled in Task 7
-                    System.out.println("Add Income option selected. (Implementation coming in Task 7)");
+                    System.out.print("Enter amount: ");
+                    double incAmount = scanner.nextDouble();
+                    scanner.nextLine(); // Consume newline left-over
+                    System.out.print("Enter category: ");
+                    String incCategory = scanner.nextLine();
+                    System.out.print("Enter date: ");
+                    String incDate = scanner.nextLine();
+                    
+                    manager.addTransaction(new Income(incAmount, incCategory, incDate));
+                    System.out.println("✅ Income added successfully!");
                     break;
                 case "3":
                     manager.displayAll();
