@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 /**
  * Main application class providing a console-based menu UI.
@@ -22,28 +23,60 @@ public class Main {
 
             switch (choiceStr) {
                 case "1":
-                    System.out.print("Enter amount: ");
-                    double expAmount = scanner.nextDouble();
-                    scanner.nextLine(); // Consume newline left-over
-                    System.out.print("Enter category: ");
-                    String expCategory = scanner.nextLine();
-                    System.out.print("Enter date: ");
-                    String expDate = scanner.nextLine();
-                    
-                    manager.addTransaction(new Expense(expAmount, expCategory, expDate));
-                    System.out.println("✅ Expense added successfully!");
+                    try {
+                        System.out.print("Enter amount: ");
+                        double expAmount = scanner.nextDouble();
+                        scanner.nextLine(); // Consume newline left-over
+                        
+                        if (expAmount <= 0) {
+                            System.out.println("❌ Invalid input! Amount must be a positive number.");
+                            break;
+                        }
+
+                        System.out.print("Enter category: ");
+                        String expCategory = scanner.nextLine();
+                        if (expCategory.trim().isEmpty()) {
+                            System.out.println("❌ Category cannot be empty.");
+                            break;
+                        }
+
+                        System.out.print("Enter date: ");
+                        String expDate = scanner.nextLine();
+                        
+                        manager.addTransaction(new Expense(expAmount, expCategory, expDate));
+                        System.out.println("✅ Expense added successfully!");
+                    } catch (InputMismatchException e) {
+                        System.out.println("❌ Please enter a valid number.");
+                        scanner.nextLine(); // clear invalid input
+                    }
                     break;
                 case "2":
-                    System.out.print("Enter amount: ");
-                    double incAmount = scanner.nextDouble();
-                    scanner.nextLine(); // Consume newline left-over
-                    System.out.print("Enter category: ");
-                    String incCategory = scanner.nextLine();
-                    System.out.print("Enter date: ");
-                    String incDate = scanner.nextLine();
-                    
-                    manager.addTransaction(new Income(incAmount, incCategory, incDate));
-                    System.out.println("✅ Income added successfully!");
+                    try {
+                        System.out.print("Enter amount: ");
+                        double incAmount = scanner.nextDouble();
+                        scanner.nextLine(); // Consume newline left-over
+                        
+                        if (incAmount <= 0) {
+                            System.out.println("❌ Invalid input! Amount must be a positive number.");
+                            break;
+                        }
+
+                        System.out.print("Enter category: ");
+                        String incCategory = scanner.nextLine();
+                        if (incCategory.trim().isEmpty()) {
+                            System.out.println("❌ Category cannot be empty.");
+                            break;
+                        }
+
+                        System.out.print("Enter date: ");
+                        String incDate = scanner.nextLine();
+                        
+                        manager.addTransaction(new Income(incAmount, incCategory, incDate));
+                        System.out.println("✅ Income added successfully!");
+                    } catch (InputMismatchException e) {
+                        System.out.println("❌ Please enter a valid number.");
+                        scanner.nextLine(); // clear invalid input
+                    }
                     break;
                 case "3":
                     manager.displayAll();
