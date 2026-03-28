@@ -16,7 +16,8 @@ public class Main {
             System.out.println("2. Add Income");
             System.out.println("3. View All Transactions");
             System.out.println("4. View Summary");
-            System.out.println("5. Exit");
+            System.out.println("6. Search by Category");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
 
             String choiceStr = scanner.nextLine().trim();
@@ -84,7 +85,12 @@ public class Main {
                 case "4":
                     manager.showSummary();
                     break;
-                case "5":
+                case "6":
+                    System.out.print("Enter category to search: ");
+                    String searchCat = scanner.nextLine();
+                    manager.searchByCategory(searchCat);
+                    break;
+                case "7":
                     running = false;
                     break;
                 default:

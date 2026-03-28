@@ -82,4 +82,21 @@ public class ExpenseManager {
         System.out.println("Balance:       " + getBalance());
         System.out.println("---------------");
     }
+
+    /**
+     * Loops through transactions and calls display() on matching categories.
+     * @param category category to search
+     */
+    public void searchByCategory(String category) {
+        boolean match = false;
+        for (Transaction t : transactions) {
+            if (t.getCategory().equalsIgnoreCase(category)) {
+                t.display();
+                match = true;
+            }
+        }
+        if (!match) {
+            System.out.println("No transactions found for category: " + category);
+        }
+    }
 }
